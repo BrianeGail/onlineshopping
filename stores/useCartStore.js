@@ -3,14 +3,15 @@ import { ref } from "vue";
 
 export const useCartStore = defineStore("cart", () => {
   const cartlist = ref([]);
+  const product = ref([]);
 
 
   const fetchProducts = async () => {
     try {
       const response = await fetch("https://fakestoreapi.com/products");
       const data = await response.json();
-      cartlist.value = data; 
-      console.log("Products fetched:", data);
+      product.value = data; 
+      // console.log("Products fetched:", data);
     } catch (error) {
       console.error("Failed to fetch products:", error);
     }
@@ -25,6 +26,7 @@ export const useCartStore = defineStore("cart", () => {
 
   return {
     cartlist,
+    product,
     fetchProducts, // Expose the fetchProducts function
     removeItem,    
   };
