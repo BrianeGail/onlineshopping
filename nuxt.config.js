@@ -12,6 +12,7 @@ export default defineNuxtConfig({
   build: {
     transpile: ["vuetify"]
   },
+
   modules: [
     // ...
     "@pinia/nuxt"
@@ -53,5 +54,6 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ["@pinia/nuxt"]
+  modules: ["@pinia/nuxt"],
+  compatibilityDate: "2024-10-17"
 });

@@ -2,7 +2,7 @@
   <div class="card text-center">
     <img :src="product.image" class="thumb" />
     <p class="font-bold text-gray-500 m-4 truncate">{{ product.title }}</p>
-
+    <p class="font-bold text-gray-500 m-4 truncate"> price {{ product.price}}</p>
     <v-row class="d-flex align-center">
       <!-- View Details button -->
       <v-col class="d-flex align-center">
@@ -10,12 +10,12 @@
           <p class="btn my-4" style="background-color: gray">
             <i class="fa-solid fa-eye"></i> View Details
           </p>
-          <!-- {{ name }} -->
+    
         </NuxtLink>
       </v-col>
 
       <!-- Cart button/component -->
-      <v-col class="d-flex align-center">
+      <v-col class="d-flex align-center color">
         <!-- <Cart /> -->
         <v-btn @click="addtocart(product)">Add to cart</v-btn>
       </v-col>
