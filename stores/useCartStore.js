@@ -16,9 +16,20 @@ export const useCartStore = defineStore("cart", () => {
   };
 
   const addItemToCart = (item) => {
-    const itemWithZeroQuantity = { ...item, quantity: 0 }; // Set quantity to 0
-    cartlist.value.push(itemWithZeroQuantity);
+    // Check if the item already exists in the cart
+    const existingItem = cartlist.value.find(cartItem => cartItem.id === item.id);
+    
+    if (existingItem) {
+      // Show an alert if the item is already in the cart
+      alert("Item already exists in the cart!");
+      return; // Item already exists, so we do nothing or handle it as needed
+    }
+  
+    // Create a new item with quantity set to 1
+    const itemWithQuantityOne = { ...item, quantity: 1 }; 
+    cartlist.value.push(itemWithQuantityOne);
   };
+  
 
   const removeItem = (index) => {
     if (index >= 0 && index < cartlist.value.length) {

@@ -35,7 +35,7 @@ export default defineNuxtConfig({
   // Add any Vuetify plugins here if needed
   app: {
     head: {
-      title: "Nuxt Dojo",
+      title: "Online Shopping",
       meta: [{ name: "description", content: "Everything about Nuxt 3" }],
       link: [
         {
