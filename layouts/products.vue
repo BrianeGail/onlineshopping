@@ -100,11 +100,14 @@
         </v-list-item>
 
         <v-list-item v-if="cartlist.length > 0">
-          <v-btn color="success" class="mt-4 mb-2 py-4" block @click="checkout">
-            Proceed to Checkout
-          </v-btn>
-        </v-list-item>
-      </v-list>
+      <v-btn color="success" class="mt-4 mb-2 py-4" block @click="openCheckout">
+        Proceed to Checkout
+      </v-btn>
+    </v-list-item>
+  </v-list>
+    <!-- Include the CheckoutModal component -->
+    <CheckoutModal ref="checkoutModal" />
+   
     </v-navigation-drawer>
 
     <div class="container mx-auto p-4">
@@ -117,11 +120,25 @@
 import { ref, computed } from "vue";
 import { useCartStore } from "@/stores/useCartStore";
 import { storeToRefs } from "pinia";
+import CheckoutModal from '@/components/CheckoutModal.vue';
 
 const store = useCartStore();
 const { cartlist } = storeToRefs(store);
 const drawer = ref(false); // Drawer state
 
+
+
+
+const checkoutModal = ref(null); // Correctly create a ref for the modal
+
+const openCheckout = () => {
+  // Ensure checkoutModal exists before setting isVisible
+  if (checkoutModal.value) {
+    checkoutModal.value.isVisible = true; // Open the modal
+  } else {
+    console.error("CheckoutModal not found.");
+  }
+};
 const totalPrice = computed(() => {
   return cartlist.value.reduce(
     (total, item) => total + item.price * item.quantity,
