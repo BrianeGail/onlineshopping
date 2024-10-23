@@ -17,20 +17,21 @@ export const useCartStore = defineStore("cart", () => {
 
   const addItemToCart = (item) => {
     // Check if the item already exists in the cart
-    const existingItem = cartlist.value.find(cartItem => cartItem.id === item.id);
-    
+    const existingItem = cartlist.value.find(
+      (cartItem) => cartItem.id === item.id
+    );
+
     if (existingItem) {
-      // Show an alert if the item is already in the cart
+      console.log("Item already exists"); // Add this for debugging
       alert("Item already exists in the cart!");
-      return; // Item already exists, so we do nothing or handle it as needed
+      return; 
     }
-  
+    
+
     // Create a new item with quantity set to 1
-    const itemWithQuantityOne = { ...item, quantity: 1 }; 
+    const itemWithQuantityOne = { ...item, quantity: 1 };
     cartlist.value.push(itemWithQuantityOne);
   };
-  
-
   const removeItem = (index) => {
     if (index >= 0 && index < cartlist.value.length) {
       cartlist.value.splice(index, 1);
@@ -38,19 +39,22 @@ export const useCartStore = defineStore("cart", () => {
   };
 
   const increaseQuantity = (item) => {
-    const existingItem = cartlist.value.find(cartItem => cartItem.id === item.id);
+    const existingItem = cartlist.value.find(
+      (cartItem) => cartItem.id === item.id
+    );
     if (existingItem) {
       existingItem.quantity += 1; // Increment quantity
     }
   };
-  
+
   const decreaseQuantity = (item) => {
-    const existingItem = cartlist.value.find(cartItem => cartItem.id === item.id);
+    const existingItem = cartlist.value.find(
+      (cartItem) => cartItem.id === item.id
+    );
     if (existingItem && existingItem.quantity > 0) {
       existingItem.quantity -= 1; // Decrement quantity if greater than 0
     }
   };
-  
 
   return {
     cartlist,
@@ -59,6 +63,6 @@ export const useCartStore = defineStore("cart", () => {
     addItemToCart,
     removeItem,
     increaseQuantity,
-    decreaseQuantity,
+    decreaseQuantity
   };
 });
